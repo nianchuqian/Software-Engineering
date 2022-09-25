@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--核心配置文件-->
+<configuration>
+    <!--    引入外部配置文件-->
+    <properties resource="db.properties">
+
+    </properties>
+
+    <settings>
+        <!--        STDOUT_LOGGING标准日志工厂实现-->
+        <setting name="logImpl" value="STDOUT_LOGGING"></setting>
+        <!--        Log4j
+        通过使用Log4j，可以控制日志信息输送的目的地是控制台、文件、还是GUI组建，甚至是网站
+        可以控制每一条日志的输出格式
+        通过定义每一条日志信息的级别，能够更加细致的控制日志的生成过程
+        可以通过配置文件进行灵活的配置，而不需要修改代码
+        -->
+        <!--        配置log4j为日志的实现-->
+        <setting name="logImpl" value="LOG4J"></setting>
+    </settings>
+
+    <typeAliases>
+        <package name="pojo"></package>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <!--            事务管理器-->
+            <transactionManager type="JDBC"/>
+            <!--            数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="root"/>
+                <property name="password" value="xzx123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="dao/UserMapper.xml"/>
+    </mappers>
+</configuration>
